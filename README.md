@@ -10,8 +10,8 @@ A collection of lab assignments covering core computer graphics concepts includi
 - [Lab 1B – Flower Draw](#lab-1b--flower-draw)
 - [Lab 2A – National Flag](#lab-2a--national-flag)
 - [Lab 2B – Waveform](#lab-2b--waveform)
-- [Lab 3A – Ball Collision](#lab-3a--ball-collision)
-- [Lab 3B – Ball Game](#lab-3b--ball-game)
+- [Lab 3A – Save the Red Ball](#lab-3a--save-the-red-ball)
+- [Lab 3B – Ball and Paddle Game](#lab-3b--ball-and-paddle-game)
 
 ---
 
@@ -47,6 +47,8 @@ A figure composed of multiple arcs is generated. Each arc is plotted separately 
 ---
 
 ## Lab 2A – National Flag
+
+![Lab 2A – National Flag](lab2a_nationalFlag.png)
 
 **Topic:** Region filling / flood fill using mouse click as the seed point (like Paint in Windows).
 
@@ -103,11 +105,11 @@ BFS(seed_x, seed_y):
 
 ---
 
-## Lab 3A – Ball Collision
+## Lab 3A – Save the Red Ball
 
 **Topic:** Object transformations using user-built transformation functions.
 
-A simple game with two balls on screen. The goal is to move the red ball to avoid the bouncing blue ball.
+A simple survival game where the objective is to keep the red ball safe from a bouncing blue ball.
 
 **Setup:**
 - Red ball radius: `R`
@@ -123,30 +125,38 @@ A simple game with two balls on screen. The goal is to move the red ball to avoi
 - Velocity range: slow enough to cross the screen in **≤ 4 seconds**, fast enough to cross in **≥ 2 seconds**
 - Rebounds off all four walls automatically
 
+**Objective:**
+- Avoid collisions between the red ball and the blue ball for as long as possible.
+- The game ends when the blue ball touches the red ball.
+
 > ⚠️ Build all transformation functions from scratch — do not use built-in transformation utilities.
 
 ---
 
-## Lab 3B – Ball Game
+## Lab 3B – Ball and Paddle Game
 
 **Topic:** Object transformations using user-built transformation functions.
 
-A classic breakout-style game. Keep the ball from hitting the bottom of the screen using the bar.
+A classic paddle-and-ball game. Keep the ball in play by bouncing it with the paddle.
 
 **Setup:**
-- Bar length: between `1/10` and `1/8` of screen width
+- Paddle length: between `1/10` and `1/8` of screen width
 - Ball radius: `1/30` of screen height
-- Bar position: fixed horizontal line at `1/20` of screen height from the bottom
+- Paddle position: fixed horizontal line at `1/20` of screen height from the bottom
 
-**Bar (Player-controlled):**
+**Paddle (Player-controlled):**
 - Moves **LEFT** or **RIGHT** with arrow keys along the fixed horizontal line
 
 **Ball (Automatic):**
-- Starts at rest on the bar
+- Starts at rest on the paddle
 - Press **UP** to launch the ball and start the game
 - Initial random velocity `V = vₓî + v_yĵ` — minimum speed crosses the screen within **2 seconds**
-- Rebounds off the **top**, **left**, **right** walls and the **bar**
+- Rebounds off the **top**, **left**, **right** walls and the **paddle**
 - **Game over** when the ball touches the bottom of the screen
+
+**Objective:**
+- Keep the ball from touching the bottom of the screen by moving the paddle.
+- Survive as long as possible by continuously bouncing the ball.
 
 > ⚠️ Build all transformation functions from scratch — do not use built-in transformation utilities.
 
