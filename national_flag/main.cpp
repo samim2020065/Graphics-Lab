@@ -1,7 +1,7 @@
 #include<GL/freeglut.h>
 #include<bits/stdc++.h>
 using namespace std;
-vector<vector<int>>visited(200,vector<int>(200,0));
+map<pair<int,int>,int>visited;
 int h=0.0,k=0.0,r=8.0;
 int mx=-1,my=-1;
 void circlebresenham(int cx,int cy,int r){
@@ -118,46 +118,40 @@ void my_mouse(int button, int state, int x, int y)
         glutPostRedisplay();
     }
 }*/
-void floodfillrectangle(int x,int y,vector<vector<int>>&visited){
+void floodfillrectangle(int x,int y,map<pair<int,int>,int>&visited){
     if(x < -20 || x > 30 || y < -15 || y > 15)
         return;
-    if(visited[x+100][y+100]){
+    if(visited[{x,y}]==1){
         return ;
     }
     if((x-h)*(x-h)+(y-k)*(y-k)<=r*r){
         return;
     }
     glVertex3f(x,y,0.0);
-    visited[x+100][y+100]=1;
+    visited[{x,y}]=1;
     floodfillrectangle(x-1,y,visited);
     floodfillrectangle(x+1,y,visited);
     floodfillrectangle(x,y-1,visited);
     floodfillrectangle(x,y+1,visited);
 
 }
-void floodfillcircle(int x,int y,vector<vector<int>>&visited){
-    if(visited[x+100][y+100]){
+void floodfillcircle(int x,int y,map<pair<int,int>,int>&visited){
+    if(visited[{x,y}]==1){
         return ;
     }
     if((x-h)*(x-h)+(y-k)*(y-k)>r*r){
         return;
     }
     glVertex3f(x,y,0.0);
-    visited[x+100][y+100]=1;
+    visited[{x,y}]=1;
     floodfillcircle(x-1,y,visited);
     floodfillcircle(x+1,y,visited);
     floodfillcircle(x,y-1,visited);
     floodfillcircle(x,y+1,visited);
 
 }
-void reset_visited_array(){
-    for(int i=0;i<200;i++)
-        {
-            for(int j=0;j<200;j++)
-            {
-                visited[i][j] = 0;
-            }
-        }
+void reset_visited(){
+    visited.clear();
 }
 void display(void){
     glClear(GL_COLOR_BUFFER_BIT);
@@ -181,13 +175,13 @@ void display(void){
 
     if(mx!=-1&&my!=-1){
         if((mx-h)*(mx-h)+(my-k)*(my-k)<=r*r){
-            reset_visited_array();
+            reset_visited();
             glColor3f(1,0,0);
             floodfillcircle(mx,my,visited);
         }
         else if(mx>=-20 && mx<=30 && my>=-15 && my<=15)
         {
-            reset_visited_array();
+            reset_visited();
             glColor3f(0.0,1.0,0.0);
             floodfillrectangle(mx,my,visited);
         }
