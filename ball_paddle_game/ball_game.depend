@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1781099197 source:e:\graphics_lab\ball_game\main.cpp
+1781169885 source:e:\graphics_lab\ball_game\main.cpp
 	<GL/freeglut.h>
 	<bits/stdc++.h>
 
