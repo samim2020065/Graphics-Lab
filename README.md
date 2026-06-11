@@ -1,6 +1,6 @@
 # Computer Graphics Lab
 
-A collection of lab assignments covering core computer graphics concepts including line/circle drawing algorithms, region filling, waveform generation, and object transformations using OpenGL/GLUT.
+A collection of lab tasks covering core computer graphics concepts including line/circle drawing algorithms, region filling, waveform generation, and object transformations using OpenGL/GLUT.
 
 ---
 
