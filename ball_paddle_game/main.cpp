@@ -18,7 +18,7 @@ float cy = barY + r;
 
 float vx = 0.0f;
 float vy = 0.0f;
-
+static float tx=0,ty=0;
 bool started = false;
 
 // ---------------- RANDOM VELOCITY ----------------
@@ -26,16 +26,16 @@ void initVelocity()
 {
     srand(time(0));
 
-    vx = (rand() % 3 + 1);
+    vx = (rand() % 2+0.2);
     if(rand() % 2) vx = -vx;
 
-    vy = (rand() % 3 + 2);
+    vy = (rand() % 2+0.2);
 
     // speed adjustment
-    float mag = sqrt(vx * vx + vy * vy);
+    /*float mag = sqrt(vx * vx + vy * vy);
 
     vx = (vx / mag) * 1.4f;
-    vy = (vy / mag) * 1.4f;
+    vy = (vy / mag) * 1.4f;*/
 }
 
 // ---------------- BRESENHAM CIRCLE ----------------
@@ -80,13 +80,12 @@ void checkCollision()
 {
     if(vy < 0)
     {
-        if(cy - r <= barY && cy > barY)
+        if(cy-r <= barY && cx >= barX+tx && cx <= barX+barW+tx)
         {
-            if(cx >= barX && cx <= barX + barW)
-            {
+
                 vy = -vy;
-                cy = barY + r + 0.5f;
-            }
+                cy = barY + r;
+
         }
     }
 }
@@ -100,21 +99,21 @@ void update(int value)
         cy += vy;
 
         // Left wall
-        if(cx - r <= 0)
+        if(cx - r < 0)
         {
             cx = r;
             vx = -vx;
         }
 
         // Right wall
-        if(cx + r >= W)
+        if(cx + r > W)
         {
             cx = W - r;
             vx = -vx;
         }
 
         // Top wall
-        if(cy + r >= H)
+        if(cy + r > H)
         {
             cy = H - r;
             vy = -vy;
@@ -129,12 +128,12 @@ void update(int value)
             exit(0);
         }
     }
-    else
+    /*else
     {
         // Keep ball on bar before launch
         cx = barX + barW / 2.0f;
         cy = barY + r;
-    }
+    }*/
 
     glutPostRedisplay();
     glutTimerFunc(16, update, 0);
@@ -144,13 +143,16 @@ void update(int value)
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-
+    glPushMatrix();
     // Draw Bar
-    glColor3f(1, 1, 0);
-    glBegin(GL_LINES);
-    glVertex2d(barX,barY);
-    glVertex2d(barX+barW,barY);
-    glEnd();
+        glColor3f(1, 1, 0);
+        glTranslatef(tx,ty,0);
+        glBegin(GL_LINES);
+        glVertex2d(barX,barY);
+        glVertex2d(barX+barW,barY);
+        glEnd();
+    glPopMatrix();
+
 
     // Draw Ball
     glColor3f(0, 1, 1);
@@ -166,20 +168,15 @@ void specialKeys(int key, int x, int y)
     {
         case GLUT_KEY_LEFT:
 
-            barX -= 3;
-
-            if(barX < 0)
-                barX = 0;
-
+            if(barX+tx >= 0)
+                tx-=3;
+            glutPostRedisplay();
             break;
 
         case GLUT_KEY_RIGHT:
-
-            barX += 3;
-
-            if(barX + barW > W)
-                barX = W - barW;
-
+            if(barX+barW+tx <= 100)
+                tx+=3;
+            glutPostRedisplay();
             break;
 
         case GLUT_KEY_UP:
@@ -189,11 +186,11 @@ void specialKeys(int key, int x, int y)
                 started = true;
                 initVelocity();
             }
-
+            glutPostRedisplay();
             break;
     }
 
-    glutPostRedisplay();
+
 }
 
 // ---------------- INIT ----------------
