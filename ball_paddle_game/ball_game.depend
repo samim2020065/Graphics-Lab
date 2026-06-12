@@ -874,7 +874,7 @@
 1781018681 c:\program files\codeblocks\mingw\x86_64-w64-mingw32\include\gl\freeglut_ext.h
 	<stdarg.h>
 
-1781201003 source:e:\graphics_lab\ball_paddle_game\main.cpp
+1781251036 source:e:\graphics_lab\ball_paddle_game\main.cpp
 	<GL/freeglut.h>
 	<bits/stdc++.h>
 

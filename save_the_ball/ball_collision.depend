@@ -881,3 +881,8 @@
 1781018681 c:\program files\codeblocks\mingw\x86_64-w64-mingw32\include\gl\freeglut_ext.h
 	<stdarg.h>
 
+1781245129 source:e:\graphics_lab\save_the_ball\main.cpp
+	<bits/stdc++.h>
+	<GL/freeglut.h>
+	<bits/stdc++.h>
+

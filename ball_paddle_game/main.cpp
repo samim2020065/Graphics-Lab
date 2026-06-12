@@ -3,7 +3,7 @@
 using namespace std;
 
 // ---------------- SCREEN ----------------
-const float W = 100.0f;
+/*const float W = 100.0f;
 const float H = 100.0f;
 
 // ---------------- BAR ----------------
@@ -31,11 +31,7 @@ void initVelocity()
 
     vy = (rand() % 2+0.2);
 
-    // speed adjustment
-    /*float mag = sqrt(vx * vx + vy * vy);
 
-    vx = (vx / mag) * 1.4f;
-    vy = (vy / mag) * 1.4f;*/
 }
 
 // ---------------- BRESENHAM CIRCLE ----------------
@@ -128,12 +124,7 @@ void update(int value)
             exit(0);
         }
     }
-    /*else
-    {
-        // Keep ball on bar before launch
-        cx = barX + barW / 2.0f;
-        cy = barY + r;
-    }*/
+
 
     glutPostRedisplay();
     glutTimerFunc(16, update, 0);
@@ -191,7 +182,157 @@ void specialKeys(int key, int x, int y)
     }
 
 
+}*/
+int barW=12;
+int barX=44,barY=5;
+static int tx=0,ty=0;
+int cx=50,cy=8,r=3;
+bool started=false;
+int vx,vy;
+void drawCircle(int xc, int yc, int r)
+{
+    int x = 0;
+    int y = r;
+    int d = 3 - 2 * r;
+
+    glBegin(GL_POINTS);
+
+    while(x <= y)
+    {
+        glVertex2i(xc + x, yc + y);
+        glVertex2i(xc - x, yc + y);
+        glVertex2i(xc + x, yc - y);
+        glVertex2i(xc - x, yc - y);
+
+        glVertex2i(xc + y, yc + x);
+        glVertex2i(xc - y, yc + x);
+        glVertex2i(xc + y, yc - x);
+        glVertex2i(xc - y, yc - x);
+
+        x++;
+
+        if(d < 0)
+        {
+            d += 4 * x + 6;
+        }
+        else
+        {
+            y--;
+            d += 4 * (x - y) + 10;
+        }
+    }
+
+    glEnd();
 }
+void initVelocity()
+{
+    srand(time(0));
+
+    vx = (rand() % 2+0.5);
+    if(rand() % 2) vx = -vx;
+
+    vy = (rand() % 2+0.5);
+
+
+}
+void checkCollision(){
+    if(vy<0){
+        if(cy-r<=barY&&cx>=barX+tx&&cx<=barX+tx+barW){
+            vy = -vy;
+            //cy = barY + r;
+        }
+    }
+}
+void update(int value)
+{
+    if(started)
+    {
+        cx += vx;
+        cy += vy;
+
+        // Left wall
+        if(cx - r < 0)
+        {
+            //cx = r;
+            vx = -vx;
+        }
+
+        // Right wall
+        if(cx + r > 100)
+        {
+            //cx = 100 - r;
+            vx = -vx;
+        }
+
+        // Top wall
+        if(cy + r > 100)
+        {
+            //cy = 100 - r;
+            vy = -vy;
+        }
+
+        checkCollision();
+
+        // Game Over
+        if(cy - r <= 0)
+        {
+            cout << "GAME OVER!" << endl;
+            exit(0);
+        }
+    }
+
+
+    glutPostRedisplay();
+    glutTimerFunc(16, update, 0);
+}
+
+void specialKeys(int key, int x, int y)
+{
+    switch(key)
+    {
+        case GLUT_KEY_LEFT:
+
+            if(barX+tx > 0)
+                tx-=3;
+            glutPostRedisplay();
+            break;
+
+        case GLUT_KEY_RIGHT:
+            if(barX+barW+tx < 100)
+                tx+=3;
+            glutPostRedisplay();
+            break;
+
+        case GLUT_KEY_UP:
+
+            if(!started)
+            {
+                started = true;
+                initVelocity();
+            }
+            glutPostRedisplay();
+            break;
+    }
+
+
+}
+void display(void){
+    glClear(GL_COLOR_BUFFER_BIT);
+    glPushMatrix();
+        glColor3f(1,1,0);
+        glTranslatef(tx,ty,0);
+        glBegin(GL_LINES);
+        glVertex2d(barX,barY);
+        glVertex2d(barX+barW,barY);
+        glEnd();
+    glPopMatrix();
+    glColor3f(1,0,0);
+    glBegin(GL_POINTS);
+    drawCircle(cx,cy,r);
+    glEnd();
+    glFlush();
+}
+
 
 // ---------------- INIT ----------------
 void init()
@@ -203,7 +344,7 @@ void init()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    glOrtho(0, W, 0, H, -1, 1);
+    glOrtho(0, 100, 0, 100, -1, 1);
 }
 
 // ---------------- MAIN ----------------
@@ -212,7 +353,8 @@ int main(int argc, char** argv)
     glutInit(&argc, argv);
 
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize(700, 700);
+    glutInitWindowSize(600, 600);
+    glutInitWindowPosition(100,100);
 
     glutCreateWindow("Ball and Paddle Game");
 

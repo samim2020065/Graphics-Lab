@@ -119,11 +119,12 @@ void my_mouse(int button, int state, int x, int y)
     }
 }*/
 void floodfillrectangle(int x,int y,map<pair<int,int>,int>&visited){
-    if(x < -20 || x > 30 || y < -15 || y > 15)
-        return;
+
     if(visited[{x,y}]==1){
         return ;
     }
+    if(x < -20 || x > 30 || y < -15 || y > 15)
+        return;
     if((x-h)*(x-h)+(y-k)*(y-k)<=r*r){
         return;
     }
