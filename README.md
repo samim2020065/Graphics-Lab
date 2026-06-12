@@ -12,6 +12,10 @@ A collection of lab tasks covering core computer graphics concepts including lin
 - [Lab 2B – Waveform](#lab-2b--waveform)
 - [Lab 3A – Save the Red Ball](#lab-3a--save-the-red-ball)
 - [Lab 3B – Ball and Paddle Game](#lab-3b--ball-and-paddle-game)
+- [Group 0 – Scaling on Translation](#group-0--scaling-on-translation)
+- [Group 1 – Automatic Working Clock](#group-1--automatic-working-clock)
+- [Group 2 – Mirror a Circle and Rotate](#group-2--mirror-a-circle-and-rotate)
+- [Group 3 – Moving Triangle](#group-3--moving-triangle)
 
 ---
 
@@ -159,6 +163,65 @@ A classic paddle-and-ball game. Keep the ball in play by bouncing it with the pa
 - Survive as long as possible by continuously bouncing the ball.
 
 > ⚠️ Build all transformation functions from scratch — do not use built-in transformation utilities.
+
+---
+
+## Group 0 – Scaling on Translation
+
+**Topic:** Combining translation and scaling transformations.
+
+A rectangle moves horizontally across the screen. The size of the rectangle changes according to its movement direction.
+
+**Controls:**
+
+| Key | Action |
+|---|---|
+| ← LEFT ARROW | Move the rectangle to the left and scale down |
+| → RIGHT ARROW | Move the rectangle to the right and scale up |
+
+> ⚠️ Transformation operations are implemented manually without relying on built-in transformation utilities.
+
+---
+
+## Group 1 – Automatic Working Clock
+
+**Topic:** Rotation transformation and real-time animation.
+
+A fully functional analog clock with three moving arms representing the second, minute, and hour hands. The clock runs automatically and updates the positions of all hands in real time without requiring any user interaction.
+
+---
+
+## Group 2 – Mirror a Circle and Rotate
+
+**Topic:** Reflection and rotation transformations.
+
+A circle is placed in front of a mirror, creating its reflected image behind the mirror. The mirror can rotate around the original circle, and the reflected circle moves accordingly. The mirror can also be moved closer to or farther from the circle.
+
+**Controls:**
+
+| Key | Action |
+|---|---|
+| A | Rotate the mirror to the left |
+| D | Rotate the mirror to the right |
+| ← LEFT ARROW | Move the mirror closer to the circle |
+| → RIGHT ARROW | Move the mirror farther from the circle |
+
+---
+
+## Group 3 – Moving Triangle
+
+**Topic:** Rotation and translation based on object orientation.
+
+A triangle with vertices `(-3, 0)`, `(3, 0),` and `(0, 5)` initially faces upward. Before moving in any direction, the triangle first rotates to face that direction. Pressing the same direction key again moves the triangle in that direction.
+
+**Controls:**
+
+| Key | Action |
+|---|---|
+| ↑ UP ARROW | Face upward or move upward |
+| ↓ DOWN ARROW | Face downward or move downward |
+| ← LEFT ARROW | Face left or move left |
+| → RIGHT ARROW | Face right or move right |
 
 ---
 
