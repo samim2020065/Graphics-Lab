@@ -1,10 +1,12 @@
 # Computer Graphics Lab
 
-A collection of lab tasks covering core computer graphics concepts including line/circle drawing algorithms, region filling, waveform generation, and object transformations using OpenGL/GLUT.
+A collection of Computer Graphics laboratory tasks and 19th Batch final examination questions implemented using C/C++ and OpenGL/GLUT. The repository covers fundamental graphics concepts such as line and circle drawing algorithms, region filling, geometric transformations, animation, and interactive graphics applications.
 
 ---
 
 ## Table of Contents
+
+### Lab Tasks
 
 - [Lab 1A – Star Draw](#lab-1a--star-draw)
 - [Lab 1B – Flower Draw](#lab-1b--flower-draw)
@@ -12,10 +14,15 @@ A collection of lab tasks covering core computer graphics concepts including lin
 - [Lab 2B – Waveform](#lab-2b--waveform)
 - [Lab 3A – Save the Red Ball](#lab-3a--save-the-red-ball)
 - [Lab 3B – Ball and Paddle Game](#lab-3b--ball-and-paddle-game)
+
+### 19th Batch Final Examination Questions
+
 - [Group 0 – Scaling on Translation](#group-0--scaling-on-translation)
 - [Group 1 – Automatic Working Clock](#group-1--automatic-working-clock)
 - [Group 2 – Mirror a Circle and Rotate](#group-2--mirror-a-circle-and-rotate)
 - [Group 3 – Moving Triangle](#group-3--moving-triangle)
+
+---
 
 ---
 
@@ -133,7 +140,6 @@ A simple survival game where the objective is to keep the red ball safe from a b
 - Avoid collisions between the red ball and the blue ball for as long as possible.
 - The game ends when the blue ball touches the red ball.
 
-> ⚠️ Build all transformation functions from scratch — do not use built-in transformation utilities.
 
 ---
 
@@ -162,7 +168,6 @@ A classic paddle-and-ball game. Keep the ball in play by bouncing it with the pa
 - Keep the ball from touching the bottom of the screen by moving the paddle.
 - Survive as long as possible by continuously bouncing the ball.
 
-> ⚠️ Build all transformation functions from scratch — do not use built-in transformation utilities.
 
 ---
 
@@ -179,7 +184,6 @@ A rectangle moves horizontally across the screen. The size of the rectangle chan
 | ← LEFT ARROW | Move the rectangle to the left and scale down |
 | → RIGHT ARROW | Move the rectangle to the right and scale up |
 
-> ⚠️ Transformation operations are implemented manually without relying on built-in transformation utilities.
 
 ---
 
